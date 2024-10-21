@@ -6,17 +6,90 @@
     <title>Florence: A Renaissance Web RPG Experience</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
     <style>
-        /* ... (keep the existing styles) ... */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        body {
+            font-family: 'Lora', serif;
+            font-weight: 500;
+            background-color: #eae1d7;
+            color: #3e3e3e;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
-        .feature-item {
-            background-color: #f9f7f2;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #d6cfc4;
+            border-bottom: 2px solid #8b5a2b;
+        }
+        nav {
+            background-color: #8b5a2b;
+            padding: 15px 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+        nav ul li a {
+            color: #f9f7f2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .game-section {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+            font-weight: 500;
+            font-style: italic;
+            color: #8b5a2b;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px 0;
+            background-color: #8b5a2b;
+            color: #f9f7f2;
+        }
+        #signupForm {
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        #signupForm form {
+            display: flex;
+            flex-direction: column;
+        }
+        #signupForm input {
+            margin: 10px 0;
+            padding: 8px;
+            border: 1px solid #8b5a2b;
+            border-radius: 4px;
+        }
+        #signupForm button {
+            background-color: #8b5a2b;
+            color: #f9f7f2;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #errorMessages {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -59,52 +132,19 @@
 
             <section id="features" class="game-section">
                 <h2>Game Features</h2>
-                <div class="feature-grid">
-                    <div class="feature-item">
-                        <h3>Dynamic Trade & Commerce</h3>
-                        <p>Establish trade routes, manage market fluctuations, and build a commercial empire.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>Political Alliances and Intrigue</h3>
-                        <p>Form alliances, engage in espionage, and influence the balance of power in Italy.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>Patronage and Cultural Flourishing</h3>
-                        <p>Sponsor artists and scientists, shaping the cultural landscape of the Renaissance.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>Economic Power through Banking</h3>
-                        <p>Create your own banking system, offer loans, and manage investments.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>Exploration and New World Expeditions</h3>
-                        <p>Fund expeditions to newly discovered lands and establish colonies.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>Social Status and Fashion</h3>
-                        <p>Navigate social hierarchies and stay ahead of Renaissance fashion trends.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>Military Campaigns and Mercenary Control</h3>
-                        <p>Engage in strategic warfare and lead mercenary forces.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>Education and Sciences</h3>
-                        <p>Study at universities, make discoveries, and shape the future of knowledge.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>Crime and Underworld Activities</h3>
-                        <p>Engage in clandestine activities and navigate the criminal underworld.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>Religious Influence and Church Politics</h3>
-                        <p>Navigate the complex world of faith and church power struggles.</p>
-                    </div>
-                    <div class="feature-item">
-                        <h3>Health and Medicine</h3>
-                        <p>Confront disease outbreaks and explore Renaissance-era medical practices.</p>
-                    </div>
-                </div>
+                <ul>
+                    <li><strong>Dynamic Trade and Commerce System:</strong> Establish trade routes, deal with risks, and manage fluctuating market prices.</li>
+                    <li><strong>Political Alliances and Intrigue:</strong> Form alliances, engage in espionage, and influence elections.</li>
+                    <li><strong>Patronage and Cultural Flourishing:</strong> Sponsor artists and scientists, commission legendary art pieces.</li>
+                    <li><strong>Economic Power through Banking:</strong> Create your own banking system, offer loans, and build financial empires.</li>
+                    <li><strong>Exploration and New World Expeditions:</strong> Fund voyages, establish colonies, and trade exotic goods.</li>
+                    <li><strong>Social Status and Fashion:</strong> Navigate social hierarchies and keep up with evolving fashion trends.</li>
+                    <li><strong>Military Campaigns and Mercenary Control:</strong> Engage in wars, develop military strategies, and lead mercenary forces.</li>
+                    <li><strong>Education and Sciences:</strong> Attend universities, make groundbreaking discoveries, and contribute to Renaissance knowledge.</li>
+                    <li><strong>Crime and Underworld Activities:</strong> Engage in high-profile crimes, manipulate the black market, and build underground networks.</li>
+                    <li><strong>Religious Influence and Church Politics:</strong> Navigate the tensions between Catholicism and the Protestant Reformation.</li>
+                    <li><strong>Health and Medicine:</strong> Deal with disease outbreaks, experiment with medicine, and influence public health.</li>
+                </ul>
             </section>
 
             <section id="community" class="game-section">
