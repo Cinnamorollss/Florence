@@ -6,7 +6,102 @@
     <title>Florence: A Renaissance Web RPG Experience</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
     <style>
-        /* ... (keep the existing styles) ... */
+        body {
+            font-family: 'Lora', serif;
+            font-weight: 500;
+            background-color: #eae1d7;
+            color: #3e3e3e;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #d6cfc4;
+            border-bottom: 2px solid #8b5a2b;
+        }
+        nav {
+            background-color: #8b5a2b;
+            padding: 15px 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+        nav ul li a {
+            color: #f9f7f2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .game-section {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+            font-weight: 500;
+            font-style: italic;
+            color: #8b5a2b;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px 0;
+            background-color: #8b5a2b;
+            color: #f9f7f2;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .feature-item {
+            background-color: #f9f7f2;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #signupForm {
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        #signupForm form {
+            display: flex;
+            flex-direction: column;
+        }
+        #signupForm input {
+            margin: 10px 0;
+            padding: 8px;
+            border: 1px solid #8b5a2b;
+            border-radius: 4px;
+        }
+        #signupForm button {
+            background-color: #8b5a2b;
+            color: #f9f7f2;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #errorMessages {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -19,7 +114,7 @@
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#" id="playNowLink">Play Now</a></li>
+                <li><a href="#play">Play Now</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#community">Community</a></li>
             </ul>
@@ -28,29 +123,47 @@
         <main>
             <section id="home" class="game-section">
                 <h2>Welcome to Florence</h2>
-                <p>Step into the vibrant world of Renaissance Italy and forge your own destiny in this text-based RPG.</p>
+                <p>Step into the vibrant world of 16th-century Italy and forge your own destiny in this text-based RPG.</p>
                 <img src="https://i.imgur.com/dUn8MsE.png" alt="Florence Art" style="max-width:100%; height:auto; border-radius:5px;">
-                
+            </section>
+
+            <section id="play" class="game-section">
+                <h2>Play Now</h2>
                 <div id="signupForm">
-                    <h2>Sign Up for Florence</h2>
+                    <h3>Sign Up for Florence</h3>
                     <form id="form">
-                        <label for="username">Username:</label>
-                        <input type="text" id="username" name="username" required>
-
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" required>
-
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
                         <button type="submit">Sign Up</button>
                     </form>
                 </div>
-
                 <div id="errorMessages"></div>
+            </section>
 
-                <!-- ... (keep other sections like features and community) ... -->
+            <section id="features" class="game-section">
+                <h2>Game Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h3>Dynamic Trade & Commerce</h3>
+                        <p>Establish trade routes, manage market fluctuations, and build a commercial empire.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Political Intrigue</h3>
+                        <p>Form alliances, engage in espionage, and influence the balance of power in Italy.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Patronage & Culture</h3>
+                        <p>Sponsor artists and scientists, shaping the cultural landscape of the Renaissance.</p>
+                    </div>
+                    <!-- Add more feature items as needed -->
+                </div>
+            </section>
 
+            <section id="community" class="game-section">
+                <h2>Join Our Community</h2>
+                <p>Connect with fellow Renaissance enthusiasts and shape the future of Florence!</p>
+                <p><a href="#" style="color:#8b5a2b;">Visit our Forum</a> | <a href="#" style="color:#8b5a2b;">Follow us on Twitter</a></p>
             </section>
         </main>
 
@@ -77,7 +190,7 @@
 
                 if (response.ok) {
                     alert('Registration successful! Please log in.');
-                    window.location.href = '/login';
+                    window.location.href = '/login.html';
                 } else {
                     const data = await response.json();
                     document.getElementById('errorMessages').textContent = data.error || 'Registration failed';
