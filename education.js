@@ -58,7 +58,7 @@ const EducationSystem = {
       }
     }
   },
-
+  
   // Complete a course
   completeCourse: function(player) {
     const completedCourse = educationCourses.find(c => c.title === player.currentCourse.title);
@@ -115,3 +115,25 @@ function daysBetween(startDate, endDate) {
 
 // Export the EducationSystem object
 export default EducationSystem;
+
+import EducationSystem from './education.js';
+
+// Example usage:
+function gameLoop(player) {
+  // ... other game logic ...
+
+  // Update education progress
+  EducationSystem.updateEducationProgress(player);
+
+  // ... other game logic ...
+}
+
+function enrollPlayerInCourse(player, courseTitle) {
+  const result = EducationSystem.enrollInCourse(player, courseTitle);
+  console.log(result); // Display the result to the player
+}
+
+function displayAvailableCourses(player) {
+  const availableCourses = EducationSystem.getAvailableCourses(player);
+  // Display these courses to the player in your UI
+}
