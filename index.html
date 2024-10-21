@@ -6,87 +6,7 @@
     <title>Florence: A Renaissance Web RPG Experience</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Lora', serif;
-            font-weight: 500;
-            background-color: #eae1d7;
-            color: #3e3e3e;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
-        }
-        header {
-            text-align: center;
-            padding: 40px 0;
-            background-color: #d6cfc4;
-            border-bottom: 2px solid #8b5a2b;
-        }
-        nav {
-            background-color: #8b5a2b;
-            padding: 15px 0;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            text-align: center;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 20px;
-        }
-        nav ul li a {
-            color: #f9f7f2;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .game-section {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        h1, h2 {
-            font-family: 'Lora', serif;
-            font-weight: 500;
-            font-style: italic;
-            color: #8b5a2b;
-        }
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            padding: 15px 0;
-            background-color: #8b5a2b;
-            color: #f9f7f2;
-        }
-        #signupForm {
-            max-width: 400px;
-            margin: auto; 
-        }
-        #signupForm form {
-            display: flex; 
-            flex-direction: column; 
-        }
-        #signupForm label {
-            margin-top: 10px; 
-        }
-        #signupForm input {
-            padding: 8px; 
-            margin-top: 5px; 
-            border-radius: 4px; 
-        }
-        button {
-            margin-top: 20px; 
-            padding: 10px; 
-            background-color: #8b5a2b; 
-            color: #fff; 
-            border-radius: 4px; 
-        }
+        /* ... (keep the existing styles) ... */
     </style>
 </head>
 <body>
@@ -102,7 +22,6 @@
                 <li><a href="#" id="playNowLink">Play Now</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#community">Community</a></li>
-                <!-- Add more links as needed -->
             </ul>
         </nav>
 
@@ -112,7 +31,6 @@
                 <p>Step into the vibrant world of Renaissance Italy and forge your own destiny in this text-based RPG.</p>
                 <img src="https://i.imgur.com/dUn8MsE.png" alt="Florence Art" style="max-width:100%; height:auto; border-radius:5px;">
                 
-                <!-- Sign Up Form -->
                 <div id="signupForm">
                     <h2>Sign Up for Florence</h2>
                     <form id="form">
@@ -129,67 +47,46 @@
                     </form>
                 </div>
 
-                <!-- Error Messages -->
                 <div id="errorMessages"></div>
 
-                <!-- Hidden input to store username -->
-                <input type="hidden" id="hiddenUsername">
-                
-                <!-- Example feature section -->
-                <section id="features" class="game-section">
-                    <h2>Game Features</h2>
-                    <!-- Add features here -->
-                </section>
+                <!-- ... (keep other sections like features and community) ... -->
 
-                <!-- Community Section -->
-                <section id="community" class="game-section">
-                    <h2>Join Our Community</h2>
-                    <!-- Add community links here -->
-                </section>
+            </section>
+        </main>
 
-                <!-- Footer -->
-                <footer>
-                    <p>&copy; 2024 Florence. All rights reserved.</p>
-                </footer>
-
-                <!-- JavaScript -->
-                <script>
-                    const form = document.getElementById('form');
-                    const errorMessages = document.getElementById('errorMessages');
-                    const hiddenUsername = document.getElementById('hiddenUsername');
-
-                    // Simulated database of existing users
-                    const existingUsers = [
-                        { username: 'john_doe', email: 'john@example.com' },
-                        { username: 'jane_smith', email: 'jane@example.com' }
-                    ];
-
-                    function checkUniqueness(field, value) {
-                        return !existingUsers.some(user => user[field].toLowerCase() === value.toLowerCase());
-                    }
-
-                    form.addEventListener('submit', (e) => {
-                        e.preventDefault();
-                        const username = document.getElementById('username').value.trim();
-                        const email = document.getElementById('email').value.trim();
-                        
-                        if (checkUniqueness('username', username) && checkUniqueness('email', email)) {
-                            // Store username in hidden input
-                            hiddenUsername.value = username;
-
-                            // Redirect to logged-in page
-                            window.location.href = 'loggedin.html?username=' + encodeURIComponent(username);
-                        } else {
-                            errorMessages.innerHTML = '<p style="color:red;">Username or email already exists.</p>';
-                        }
-                    });
-                </script>
-
-           </section>
-
-       </main>
-
+        <footer>
+            <p>&copy; 2024 Florence. All rights reserved.</p>
+        </footer>
     </div>
 
+    <script>
+        document.getElementById('form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, email, password }),
+                });
+
+                if (response.ok) {
+                    alert('Registration successful! Please log in.');
+                    window.location.href = '/login';
+                } else {
+                    const data = await response.json();
+                    document.getElementById('errorMessages').textContent = data.error || 'Registration failed';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('errorMessages').textContent = 'An error occurred. Please try again.';
+            }
+        });
+    </script>
 </body>
 </html>
